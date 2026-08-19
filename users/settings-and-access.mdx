@@ -1,0 +1,45 @@
+---
+title: "Settings and access"
+description: "Configure reminders and integrations, then give each person only the access they need."
+sidebarTitle: "Settings"
+---
+
+## Settings map
+
+The sidebar groups settings by purpose:
+
+- **General** — site name, localization, currency, timezone, appearance, invoice PDF behavior, and reference prefixes.
+- **Account** — profile, password, and security settings.
+- **Notifications** — rent reminder timing, channels, templates, and overdue follow-ups.
+- **Integrations** — mail, payment gateway, and WhatsApp.
+
+## Configure reminders
+
+The reminder settings page lets an owner:
+
+- Enable or disable automated reminders.
+- Select notification channels.
+- Edit upcoming, due-today, and overdue templates.
+- Set the number of days before due date for upcoming reminders.
+- Set overdue follow-up intervals.
+- Preview the rendered message with invoice context and a link.
+
+The application logs reminder activity even when a delivery channel is changed. Use the preview before saving a template so placeholders remain valid.
+
+![OpenKOS reminder settings showing channels, templates, and message previews](/images/openkos-reminder-settings.jpg)
+
+## Configure integrations
+
+The WhatsApp page selects the active driver and provides a connection test. The development-safe log driver writes messages to the application log instead of requiring a real WhatsApp account.
+
+The payment gateway page is only ready for online checkout when a gateway plugin is installed. If the page says **Payment gateway unavailable** or **No payment gateways installed**, install and configure the provider integration before activating online payments.
+
+## Manage users and roles
+
+Owners can open **Users** to invite staff, assign properties, resend invitations, reset passwords, and disable access. **Roles & Permissions** controls reusable permission sets.
+
+Use the smallest role that lets a person do their work. Admin access can also be scoped to assigned properties, while the owner role has installation-wide responsibility.
+
+<Note>
+  If a menu item or action is missing, check both the user's role permissions and their property assignment.
+</Note>

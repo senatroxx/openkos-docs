@@ -1,0 +1,56 @@
+---
+title: "Developer overview"
+description: "Build, extend, test, and deploy OpenKOS without guessing where things belong."
+sidebarTitle: "Overview"
+---
+
+OpenKOS is a Laravel and React property-management platform with a separate extension layer. This section is for contributors, operators, and plugin authors.
+
+<CardGroup cols={2}>
+  <Card title="Local setup" icon="laptop" href="/developers/setup">
+    Install dependencies, configure the app, and run the development stack.
+  </Card>
+
+  <Card title="Architecture" icon="diagram-project" href="/developers/architecture">
+    Learn the request flow, application layers, and core domain boundaries.
+  </Card>
+
+  <Card title="Plugins" icon="puzzle-piece" href="/developers/plugins">
+    Add features through the platform registries instead of forking core.
+  </Card>
+
+  <Card title="Deployment" icon="cloud-arrow-up" href="/developers/deployment">
+    Run the immutable production image with the required runtime roles.
+  </Card>
+</CardGroup>
+
+## Technology at a glance
+
+| Area | Technology |
+| --- | --- |
+| Backend | PHP 8.4 and Laravel 13 |
+| Frontend | React 19, Inertia 3, and TypeScript |
+| UI | shadcn/ui and Tailwind CSS 4 |
+| Authentication | Laravel Fortify |
+| Authorization | Spatie Permission |
+| Typed routes | Laravel Wayfinder |
+| Database | PostgreSQL |
+| Queue | Laravel database queue |
+| Tests | Pest 4 |
+
+## Repository map
+
+- `app/` contains application code: actions, business rules, models, controllers, policies, jobs, notifications, and services.
+- `src/` contains application-owned plugins.
+- `openkos-platform/` is the reusable platform package with registries, contracts, events, and the plugin lifecycle.
+- `resources/js/` contains the React and Inertia client.
+- `routes/` contains web, settings, API, and console route definitions.
+- `tests/` contains Pest feature and unit tests.
+
+## Contribution rule of thumb
+
+Before adding a new abstraction, look for an existing action, business class, registry, component, or route pattern that already fits. Keep controllers thin, keep domain rules testable, and record lasting architectural trade-offs as ADRs.
+
+<Note>
+  OpenKOS is v0.1 Alpha. Expect breaking changes while the platform and plugin APIs continue to stabilize.
+</Note>

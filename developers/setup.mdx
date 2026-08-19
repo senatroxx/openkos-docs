@@ -1,0 +1,73 @@
+---
+title: "Local development setup"
+description: "Set up OpenKOS locally and run the application, queue, logs, and frontend together."
+sidebarTitle: "Setup"
+---
+
+## Prerequisites
+
+Install:
+
+- PHP 8.4 or newer with the required extensions.
+- Composer.
+- Node.js 22 or newer and npm.
+- PostgreSQL 16 or newer.
+
+SQLite and MySQL are not tested for the application. Use PostgreSQL when you want a setup close to the supported environment.
+
+## Install the application
+
+Clone the repository, then install PHP and frontend dependencies:
+
+```bash
+composer install
+npm install
+```
+
+Run the interactive installer:
+
+```bash
+php artisan app:install
+```
+
+The installer creates or updates the environment, asks for database and owner details, generates the application key, runs migrations, and creates the first owner account. Only one owner account can be created by the installer.
+
+For a fully preconfigured environment, create `.env` yourself and set a valid `APP_KEY` before running the installer.
+
+## Start development services
+
+```bash
+composer run dev
+```
+
+This starts the Laravel server on port 8080, the database-backed queue worker, Pail log viewer, and the Vite development server with hot module replacement.
+
+If you need to run services separately:
+
+```bash
+php artisan serve --port=8080
+php artisan queue:listen --tries=1
+php artisan pail
+npm run dev
+```
+
+## Verify a change
+
+Run the smallest useful check first:
+
+```bash
+php artisan test --compact
+```
+
+Before opening a pull request, run the project checks:
+
+```bash
+composer run lint:check
+composer run ci:check
+```
+
+The test suite uses Pest. PHP formatting is handled by Laravel Pint, and frontend checks are included in the CI script.
+
+<Tip>
+  If the frontend looks stale after a change, restart Vite with `npm run dev` or produce a fresh bundle with `npm run build`.
+</Tip>

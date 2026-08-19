@@ -1,0 +1,60 @@
+---
+title: "Integrations"
+description: "Connect notifications and payment providers through stable extension boundaries."
+sidebarTitle: "Integrations"
+---
+
+OpenKOS keeps external providers behind platform registries and application contracts. Integrations should add a driver or plugin instead of embedding provider-specific logic in controllers.
+
+## Notification integrations
+
+Notification drivers can support mail, WhatsApp, or another channel. A driver is registered with the notification registry and selected from the relevant settings page.
+
+For local development, the built-in log driver is the safe default. It lets you exercise reminder workflows without sending messages to real tenants.
+
+Reminder delivery follows this shape:
+
+Schedule → reminder action → deduplication log → domain event → notification listener → channel driver
+
+The message template is resolved at send time, so a template change applies to queued reminders that have not been delivered yet.
+
+## Payment gateway integrations
+
+A payment gateway should implement the platform payment contract and expose:
+
+- Checkout creation.
+- Provider status lookup when supported.
+- Webhook handling.
+- Normalized attempt states.
+
+The application uses the same settlement path for webhooks and reconciliation. This keeps invoice locking, amount validation, allocation, duplicate protection, and anomaly logging consistent.
+
+## Webhooks and reconciliation
+
+Payment webhooks are received at:
+
+```text
+POST /api/webhooks/payment/{gateway}
+```
+
+Pending gateway attempts are rechecked on a schedule when a provider reference exists. Staff can also request a status recheck from the invoice detail page.
+
+Provider results are normalized into a small set of outcomes:
+
+- **ACTIVE** — keep the attempt pending.
+- **COMPLETED** — settle through the canonical payment path.
+- **EXPIRED** or **CANCELED** — finalize the attempt without changing invoice accounting.
+- **Mismatch or anomaly** — record the issue and do not settle.
+
+Never use browser redirect parameters as payment confirmation.
+
+## Plugin seam
+
+A plugin typically registers its provider from its plugin class:
+
+```php
+$platform->notifications()->registerDriver(...);
+$platform->payments()->registerGateway(...);
+```
+
+Keep provider secrets in settings or environment configuration, never in payment attempts or structured logs. See Plugin development for lifecycle, version constraints, and discovery.

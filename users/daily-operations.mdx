@@ -1,0 +1,61 @@
+---
+title: "Daily operations"
+description: "A task-based guide to the operational workflows in OpenKOS."
+sidebarTitle: "Operations"
+---
+
+OpenKOS is organized around the work your team does every day. Use the page that matches the task in front of you.
+
+## Properties and units
+
+Use **Properties** to manage the places you operate. Within a property, you can review units, leases, documents, maintenance history, and lease history.
+
+A unit can be:
+
+- **Available** — ready for a new lease.
+- **Occupied** — currently assigned to an active lease.
+- **Maintenance** — blocked from new leases, assignments, and moves.
+- **Unavailable** — blocked for another operational reason.
+
+## Tenants and leases
+
+Use **Tenants** to keep tenant records and documents together. From a tenant workspace, staff can review leases, assign a unit, send or resend an invitation, and disable portal access.
+
+A lease connects a tenant to a property and unit. Common lease actions include:
+
+- Creating and updating lease terms.
+- Moving a tenant to another unit.
+- Renewing a lease.
+- Moving a tenant out.
+- Reviewing invoices, payments, documents, and the rent schedule.
+
+When a unit is blocked for maintenance, OpenKOS can either keep the tenant in place or transfer the active lease to another available unit. The lease remains the same; the unit transfer is tracked in history.
+
+## Invoices and payments
+
+OpenKOS uses the billing chain **lease → invoice → payment**.
+
+- Pending invoices are generated for active leases.
+- Partial payments are supported.
+- Only confirmed payments change the invoice balance.
+- Invoice status moves through pending, partial, and paid states.
+- Overpayments are rejected.
+- Staff can review payment proof and verify or reject submitted payments.
+
+Use the invoice detail page as the source of truth for what is due and what has been paid.
+
+## Maintenance
+
+Create a maintenance ticket for a unit, describe the issue, and move it through **reported → in progress → resolved**.
+
+When creating a ticket, you can optionally block the unit. Resolving a ticket can restore availability when no other open maintenance ticket still requires the unit to remain blocked.
+
+## Rent reminders
+
+OpenKOS can send configurable rent reminders through the installed notification channels. Automated reminders cover upcoming, due-today, and overdue invoices. Staff can also send a one-off reminder from a lease.
+
+Reminder amounts come from the invoice's outstanding balance, so partial payments are reflected correctly.
+
+<Note>
+  What you can see and change depends on your role and permissions. If an action is missing, ask an owner or administrator to review your access.
+</Note>

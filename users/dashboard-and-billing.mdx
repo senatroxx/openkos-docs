@@ -1,0 +1,44 @@
+---
+title: "Dashboard and billing"
+description: "Use the dashboard and collection queue to decide what needs attention first."
+sidebarTitle: "Dashboard"
+---
+
+The dashboard is the operational starting point for owners, admins, and staff. It puts the next actions ahead of background information.
+
+## Dashboard overview
+
+The dashboard combines four useful views:
+
+- **Today's Attention** — overdue invoices, invoices due today, open maintenance, leases ending soon, and payments waiting for review.
+- **Business Health** — revenue this month, monthly potential, outstanding balance, and collection rate.
+- **Property Overview** — occupancy and unit counts per property.
+- **Recent Activity** — a record of recent payment, property, and other operational events.
+
+Use **Add Tenant** for a quick tenant entry or **Collect Rent** to go directly to the collection queue.
+
+![OpenKOS dashboard showing today's attention, business health, and property operations](/images/openkos-dashboard.jpg)
+
+## Work the collection queue
+
+1. Open **Billing** from the sidebar.
+2. Choose a queue filter: **All**, **Overdue**, **Due Today**, **Upcoming**, **Pending Review**, **Partial**, or **Paid**.
+3. Open the lease or invoice that needs attention.
+4. Review the invoice balance and payment attempts.
+5. Record a manual payment, verify submitted proof, or recheck a pending gateway attempt.
+
+The queue shows both the number of invoices and the total outstanding balance. Use the queue as a work list; use the invoice detail page as the source of truth for one tenant's balance.
+
+![OpenKOS collection queue showing billing filters, progress, and unpaid invoices](/images/openkos-collection.jpg)
+
+## Understand the statuses
+
+- **Pending** — no confirmed payment has been allocated.
+- **Partial** — at least one confirmed payment exists, but money is still outstanding.
+- **Paid** — the invoice balance is fully settled by confirmed payments.
+- **Overdue** — the invoice is still payable after its due date.
+- **Pending review** — a payment or proof needs staff attention.
+
+<Note>
+  Dashboard totals are data-dependent. A count of zero means there is no matching work in the current installation, not that the feature is disabled.
+</Note>

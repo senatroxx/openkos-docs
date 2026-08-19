@@ -1,37 +1,46 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "OpenKOS Documentation",
   "colors": {
-    "primary": "#2563EB",
-    "light": "#0EA5E9",
-    "dark": "#1D4ED8"
+    "primary": "#096CF8",
+    "light": "#3D89FF",
+    "dark": "#1F67DA"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "pages": [
+      "introduction",
+      "about",
+      "installation",
+      "quickstart",
+      "deployment",
+      "contributing",
       {
-        "group": "Getting Started",
+        "group": "Users",
         "pages": [
           "index",
-          "quickstart"
+          "users/dashboard-and-billing",
+          "users/billing-and-payments",
+          "users/properties-and-units",
+          "users/tenants-and-leases",
+          "users/daily-operations",
+          "users/maintenance",
+          "users/settings-and-access",
+          "users/tenant-portal"
+        ]
+      },
+      {
+        "group": "Developers",
+        "pages": [
+          "developers/index",
+          "developers/setup",
+          "developers/architecture",
+          "developers/plugins",
+          "developers/integrations"
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
@@ -40,14 +49,14 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "GitHub",
+        "href": "https://github.com/senatroxx/openkos"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
+      "label": "Get started",
+      "href": "/quickstart"
     }
   },
   "contextual": {
@@ -64,9 +73,14 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://github.com/senatroxx/openkos"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/introduction",
+      "permanent": true
+    }
+  ]
 }

@@ -1,0 +1,66 @@
+---
+title: "Architecture"
+description: "Understand the application layers and the path from a request to a domain change."
+sidebarTitle: "Architecture"
+---
+
+OpenKOS uses a layer-first, domain-oriented architecture. The goal is to keep HTTP concerns, business rules, persistence, and integrations easy to find and test.
+
+## Request flow
+
+```text
+HTTP request
+  → Controller
+    → Form Request and Policy
+    → Action
+      → Business rules
+      → Repository or Eloquent model
+      → Notification or domain event
+  → Inertia response or redirect
+```
+
+### Responsibilities
+
+- **Controllers** handle HTTP, validation, authorization, and response selection.
+- **Actions** orchestrate multi-step operations and transactions.
+- **Business classes** contain reusable, side-effect-free domain rules.
+- **Data objects** carry typed input into actions.
+- **Results** represent expected success or failure without throwing for normal business outcomes.
+- **Repositories** wrap complex persistence and query rules.
+- **Events and notifications** connect completed business work to integrations.
+
+## Where code belongs
+
+```text
+app/
+├── Actions/       Multi-step operations
+├── Business/      Pure domain rules
+├── Data/          Typed input objects
+├── Results/       Expected operation outcomes
+├── Repositories/  Complex persistence
+├── Models/        Eloquent models
+├── Http/          Controllers, requests, middleware
+├── Policies/      Authorization
+├── Events/        Domain events
+├── Notifications/ Notification channels and messages
+└── Services/      External integrations
+
+src/Plugins/       Application-owned plugins
+resources/js/      React and Inertia client
+```
+
+## Billing model
+
+Billing follows **lease → invoice → payment → payment proof**.
+
+Invoices are generated for active leases, payments settle a specific invoice, and invoice status is recalculated from confirmed payments. This keeps partial payments, verification, overpayment protection, and gateway reconciliation on one path.
+
+## State and authorization
+
+Core entities use string-backed enums and centralized transition rules. Authorization is enforced with policies and Spatie permissions. The owner role can bypass permission checks on the backend, but frontend navigation still needs the permission data to render correctly.
+
+## Frontend conventions
+
+Pages live in `resources/js/pages`. Server routes render Inertia pages, and Wayfinder generates typed route functions for frontend calls. Reuse shared UI components and existing page patterns before introducing a new abstraction.
+
+When changing a workflow, update the feature test and the relevant frontend behavior together.
