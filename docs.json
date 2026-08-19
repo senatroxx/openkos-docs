@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "OpenKOS Documentation",
   "colors": {
-    "primary": "#2563EB",
-    "light": "#0EA5E9",
-    "dark": "#1D4ED8"
+    "primary": "#096CF8",
+    "light": "#3D89FF",
+    "dark": "#1F67DA"
   },
   "favicon": "/favicon.svg",
   "navigation": {
