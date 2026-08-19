@@ -1,47 +1,38 @@
 ---
 title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+description: "Go from an empty workspace to your first active lease."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
-
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
-
-## Prerequisites
-
-Before you begin, you must have:
-
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+Use this guide after your OpenKOS installation is available and you can sign in as an owner, admin, or staff user.
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
-
-    ```bash
-    npm install your-package
-    ```
+  <Step title="Create a property">
+    Open **Properties** and add the property you manage. Add the address and any details your team needs when identifying it.
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
-
-    ```bash
-    your-cli init
-    ```
+  <Step title="Add units">
+    Open the property, add its units, and set each unit's type, rate, capacity, and availability. Units marked for maintenance should not be used for new leases.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
-
-    ```bash
-    your-cli start
-    ```
+  <Step title="Add a tenant">
+    Open **Tenants**, create the tenant record, and add the contact details needed for invitations and notifications.
+  </Step>
+  <Step title="Create a lease">
+    From the tenant or unit workspace, create a lease and select the unit, dates, rent, billing interval, and billing strategy. OpenKOS generates the related invoices for the active lease.
+  </Step>
+  <Step title="Review the first invoice">
+    Open the lease's **Invoices** workspace. Confirm the due date and amount, then record a payment manually or let a configured payment gateway handle checkout.
+  </Step>
+  <Step title="Invite the tenant">
+    Send the tenant invitation from the tenant workspace. After the tenant accepts, they can use the portal to view the lease, invoices, payment history, notifications, and maintenance tickets.
   </Step>
 </Steps>
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+## What to check next
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
+- Configure payment gateway, mail, and WhatsApp settings if your installation uses them.
+- Set rent reminder timing and templates under **Settings → Reminders**.
+- Create staff users and assign only the permissions they need.
+- Open the dashboard to review rent and operational items that need attention.
+
+<Tip>
+  Start with one property and one lease. Once the full flow feels right, add the rest of your portfolio.
 </Tip>

@@ -1,0 +1,60 @@
+---
+title: "Production deployment"
+description: "Deploy the immutable OpenKOS image with web, queue, and scheduler roles."
+---
+
+OpenKOS publishes an immutable production image at `ghcr.io/senatroxx/openkos`.
+
+The production Compose setup contains three application roles:
+
+- **web** — FrankenPHP HTTP server on container port 8080.
+- **queue** — database-backed Laravel queue worker.
+- **scheduler** — Laravel scheduler.
+
+PostgreSQL is external. Redis is not required for the default production setup.
+
+## Configure the environment
+
+Create an untracked `.env.production` with:
+
+- `APP_KEY`
+- `APP_URL`
+- `APP_ENV=production`
+- `APP_DEBUG=false`
+- PostgreSQL connection settings
+- `QUEUE_CONNECTION=database`
+- `CACHE_STORE=database`
+- `SESSION_DRIVER=database`
+- SMTP settings
+- `FILESYSTEM_DISK=local`
+- `TRUSTED_PROXIES` for the reverse proxy networks you actually trust
+
+Terminate TLS at Traefik, Caddy, Cloudflare Tunnel, or another external load balancer. Forward the standard `X-Forwarded-*` headers so Laravel can generate correct URLs and identify the request scheme.
+
+## Run migrations explicitly
+
+Migrations are a release step, not a container startup side effect:
+
+```bash
+docker compose -f compose.production.yaml run --rm web php artisan migrate --force
+docker compose -f compose.production.yaml up -d
+```
+
+## Choose an immutable image
+
+```bash
+OPENKOS_IMAGE=ghcr.io/senatroxx/openkos:1.2.3 \
+docker compose -f compose.production.yaml up -d
+```
+
+Stable tags include `1.2.3`, `1.2`, `1`, and `latest`. Nightly builds use `nightly` and an immutable build tag containing the UTC date and commit SHA.
+
+## Protect uploads
+
+The Compose file mounts the named `openkos_uploads` volume at `storage/app/private` for tenant documents and payment proofs.
+
+Back up this volume before replacing the host. It survives container replacement on the same Docker host, but it is not shared across hosts. Move uploads to shared object storage before scaling across multiple hosts.
+
+<Warning>
+  Never set `TRUSTED_PROXIES=*` unless the application is reachable only through a trusted private proxy network.
+</Warning>

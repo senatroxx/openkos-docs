@@ -18,20 +18,27 @@
         ]
       }
     ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    "groups": [
+      {
+        "group": "For end users",
+        "pages": [
+          "index",
+          "quickstart",
+          "users/daily-operations",
+          "users/tenant-portal"
+        ]
+      },
+      {
+        "group": "For developers",
+        "pages": [
+          "developers/index",
+          "developers/setup",
+          "developers/architecture",
+          "developers/plugins",
+          "developers/deployment"
+        ]
+      }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",

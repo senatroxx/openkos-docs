@@ -1,0 +1,80 @@
+---
+title: "Plugin development"
+description: "Extend OpenKOS with navigation, settings, payments, notifications, events, and workspace features."
+---
+
+Plugins let you add product features without modifying core application code. A plugin can register UI, permissions, settings, notification drivers, payment gateways, routes, migrations, and event listeners.
+
+## What plugins can extend
+
+- Sidebar navigation and dashboard pages.
+- Property, lease, tenant, and other workspace tabs.
+- Settings pages and validated key-value settings.
+- Notification drivers, including WhatsApp and mail.
+- Payment gateways.
+- Permissions and domain-event listeners.
+
+## Minimal plugin shape
+
+```php
+use OpenKOS\Platform\OpenKOSManager;
+use OpenKOS\Platform\Plugin\Plugin;
+use OpenKOS\Platform\Plugin\PluginManifest;
+
+final class MyPlugin extends Plugin
+{
+    public function manifest(): PluginManifest
+    {
+        return new PluginManifest(
+            id: 'acme/my-plugin',
+            name: 'My Plugin',
+            version: '1.0.0',
+            coreVersion: '^0.2',
+            dependencies: [],
+        );
+    }
+
+    public function register(OpenKOSManager $platform): void
+    {
+        $platform->permissions()->register(
+            'my-feature.view',
+            'View My Feature',
+        );
+    }
+}
+```
+
+Register UI and integration points from `register()` or `boot()` using the platform manager:
+
+```php
+$platform->navigation()->registerItem(...);
+$platform->dashboard()->registerPage(...);
+$platform->settings()->registerPage(...);
+$platform->notifications()->registerDriver(...);
+$platform->payments()->registerGateway(...);
+```
+
+Use `boot()` when registration needs all plugins to be loaded or when Laravel route helpers are required.
+
+## Resources and discovery
+
+A plugin may contain its own conventional resources:
+
+```text
+src/Plugins/MyPlugin/
+├── MyPlugin.php
+├── routes/web.php
+└── database/migrations/
+```
+
+Add an application-owned plugin to `config/platform.php`. External Composer packages can advertise one plugin class through their package metadata and be discovered when platform discovery is enabled.
+
+## Lifecycle and safety
+
+At boot, OpenKOS validates plugin classes, checks core-version constraints, verifies dependencies, orders plugins, loads routes and migrations, runs `register()`, then `boot()`, and finally wires event listeners.
+
+A missing dependency, incompatible core version, duplicate plugin ID, or dependency cycle fails fast. Use a vendor-namespaced plugin ID and keep permissions specific to the feature.
+
+<Warning>
+  Import the facade from `OpenKOS\Platform\Facades\OpenKOS` when needed. There is intentionally no root-level `OpenKOS` alias because it would collide with the `OpenKOS\` namespace.
+</Warning>
