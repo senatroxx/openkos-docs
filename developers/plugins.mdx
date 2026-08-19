@@ -1,9 +1,16 @@
 ---
 title: "Plugin development"
 description: "Extend OpenKOS with navigation, settings, payments, notifications, events, and workspace features."
+sidebarTitle: "Plugins"
 ---
 
 Plugins let you add product features without modifying core application code. A plugin can register UI, permissions, settings, notification drivers, payment gateways, routes, migrations, and event listeners.
+
+## Platform package
+
+The reusable plugin contracts, registries, manager, and lifecycle live in the separate openkos-platform project. OpenKOS consumes that package through Composer, while this repository keeps the application-owned plugins under src/Plugins/.
+
+Use openkos-platform for shared extension infrastructure. Use this repository for host-specific plugin implementations, configuration, routes, migrations, and UI.
 
 ## What plugins can extend
 

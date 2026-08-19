@@ -1,6 +1,7 @@
 ---
 title: "Architecture"
 description: "Understand the application layers and the path from a request to a domain change."
+sidebarTitle: "Architecture"
 ---
 
 OpenKOS uses a layer-first, domain-oriented architecture. The goal is to keep HTTP concerns, business rules, persistence, and integrations easy to find and test.
@@ -45,7 +46,6 @@ app/
 └── Services/      External integrations
 
 src/Plugins/       Application-owned plugins
-openkos-platform/  Reusable platform package
 resources/js/      React and Inertia client
 ```
 
