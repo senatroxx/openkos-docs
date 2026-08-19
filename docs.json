@@ -9,18 +9,13 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "groups": [
-      {
-        "group": "Introduction",
-        "pages": [
-          "introduction",
-          "about",
-          "installation",
-          "quickstart",
-          "deployment",
-          "contributing"
-        ]
-      },
+    "pages": [
+      "introduction",
+      "about",
+      "installation",
+      "quickstart",
+      "deployment",
+      "contributing",
       {
         "group": "Users",
         "pages": [
