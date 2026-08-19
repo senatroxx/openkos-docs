@@ -1,0 +1,49 @@
+---
+title: "Billing and payments"
+description: "Understand invoices, payment proof, online checkout, and reconciliation."
+---
+
+OpenKOS organizes rental billing around invoices. The normal chain is:
+
+**Lease → Invoice → Payment → Payment proof**
+
+## Invoice lifecycle
+
+Invoices are generated for active leases and can be:
+
+- **Pending** when no confirmed payment has been recorded.
+- **Partial** when a confirmed payment covers only part of the amount.
+- **Paid** when the outstanding balance reaches zero.
+
+Invoice status is recalculated from confirmed payments. A rejected payment can move an invoice back to an outstanding state.
+
+## Record a manual payment
+
+1. Open the lease or billing queue.
+2. Select the invoice being paid.
+3. Enter the amount and payment details.
+4. Attach proof when the installation uses manual verification.
+5. Save the payment.
+6. Verify the payment after checking the proof.
+
+Partial payments are supported. OpenKOS rejects overpayments and prevents a second payment from settling an invoice that is already paid.
+
+## Online payments
+
+When a payment gateway is installed and configured, tenants can start checkout from an invoice. The payment remains pending until OpenKOS receives a trusted provider result.
+
+Do not treat a browser redirect as payment confirmation. Confirmation comes from a provider webhook or a successful provider status lookup.
+
+## Pending gateway attempts
+
+Staff can open an invoice's **Gateway attempts** section to review:
+
+- OpenKOS and provider references.
+- Attempt status and expiry.
+- Safe failure or anomaly messages.
+
+Use **Recheck status** when a provider reference exists. The reconciliation job also checks eligible pending attempts periodically.
+
+<Warning>
+  Never manually mark an invoice paid just because a tenant says checkout succeeded. Check the payment attempt or provider confirmation first.
+</Warning>
