@@ -11,10 +11,20 @@
   "navigation": {
     "groups": [
       {
+        "group": "Introduction",
+        "pages": [
+          "introduction",
+          "about",
+          "installation",
+          "quickstart",
+          "deployment",
+          "contributing"
+        ]
+      },
+      {
         "group": "For end users",
         "pages": [
           "index",
-          "quickstart",
           "users/dashboard-and-billing",
           "users/billing-and-payments",
           "users/properties-and-units",
@@ -32,8 +42,7 @@
           "developers/setup",
           "developers/architecture",
           "developers/plugins",
-          "developers/integrations",
-          "developers/deployment"
+          "developers/integrations"
         ]
       }
     ]

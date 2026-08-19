@@ -1,0 +1,45 @@
+---
+title: "Contributing"
+description: "Prepare a focused change, run the right checks, and open a useful pull request."
+---
+
+Thanks for helping improve OpenKOS. Before participating, read the project's Code of Conduct and check existing issues for related work.
+
+## Start a change
+
+1. Fork the repository and create a focused branch.
+2. Follow [Installation](/installation) to set up a local checkout.
+3. Keep the change focused and follow the conventions in the surrounding code.
+4. For plugin work, read [Plugin development](/developers/plugins).
+5. For architectural changes, read [Architecture](/developers/architecture) and include an ADR when the decision has lasting trade-offs.
+
+## Run the checks
+
+Use the smallest relevant check while working:
+
+```bash
+php artisan test --compact
+```
+
+Before opening a pull request, run the project checks:
+
+```bash
+php artisan test --compact
+npm run lint:check
+npm run format:check
+npm run types:check
+```
+
+Run Laravel Pint after changing PHP files:
+
+```bash
+vendor/bin/pint --dirty --format agent
+```
+
+## Open a pull request
+
+Explain the problem and the approach taken. Include or update tests for behavior changes, mention migration or deployment steps, and keep unrelated cleanup out of the pull request.
+
+<Note>
+  If a change introduces a lasting architectural trade-off, add an ADR under docs/architecture/adr/ and explain why the decision is needed.
+</Note>

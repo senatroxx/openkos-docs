@@ -1,0 +1,35 @@
+---
+title: "About OpenKOS"
+description: "Learn what OpenKOS manages, who it is for, and how the platform is structured."
+---
+
+OpenKOS is built for owners and operators who manage boarding houses, apartments, and other rental properties.
+
+## What it manages
+
+OpenKOS connects daily property work into one flow:
+
+1. Create properties and units.
+2. Add tenants and create leases.
+3. Generate and track invoices.
+4. Record or reconcile payments.
+5. Send rent reminders through configured channels.
+6. Track maintenance from report to resolution.
+7. Give staff access only to the properties and actions they need.
+
+## Who uses it
+
+- **Owners and operators** monitor portfolio health, collections, occupancy, and maintenance.
+- **Property staff** manage tenants, leases, payments, reminders, and work orders.
+- **Tenants** use the portal to view their lease, invoices, payment history, notifications, and maintenance tickets.
+- **Developers** extend the platform through plugins instead of modifying core workflows.
+
+## Platform shape
+
+OpenKOS is a Laravel and React application with a modular-monolith architecture. PostgreSQL is the supported database for the application. The platform includes extension boundaries for navigation, dashboards, settings, workspace tabs, notifications, and payment gateways.
+
+See [Architecture](/developers/architecture) for the request flow and domain boundaries, or [Plugin development](/developers/plugins) to build an extension.
+
+## License and project status
+
+OpenKOS is released under the Apache 2.0 license. It is actively developed as an MVP / v0.1 Alpha project, so expect breaking changes while the API and plugin system mature.
