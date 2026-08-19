@@ -41,16 +41,16 @@ docker compose -f compose.production.yaml run --rm web php artisan migrate --for
 docker compose -f compose.production.yaml up -d
 ```
 
-## Choose an immutable image
+## Choose the image
 
-The current published release is `0.1.0-alpha.5`. Use an explicit release tag in production:
+Use the `latest` tag for the standard production deployment after the release workflow publishes it:
 
 ```bash
-OPENKOS_IMAGE=ghcr.io/senatroxx/openkos:0.1.0-alpha.5 \
+OPENKOS_IMAGE=ghcr.io/senatroxx/openkos:latest \
 docker compose -f compose.production.yaml up -d
 ```
 
-The registry also publishes a moving `nightly` tag and immutable nightly tags. Use `nightly` only for testing; it is not a production release. The package does not currently publish a `latest` tag.
+For repeatable rollbacks, replace `latest` with an explicit release tag or image digest. The registry also publishes a moving `nightly` tag for testing; do not use it for production.
 
 ## Protect uploads
 

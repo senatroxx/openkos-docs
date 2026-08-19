@@ -51,19 +51,17 @@ For individual processes, see [Local development setup](/developers/setup).
 
 ## Use a published release image
 
-OpenKOS publishes versioned images through [GitHub Container Registry](https://github.com/senatroxx/openkos/pkgs/container/openkos). The current published release is `0.1.0-alpha.5`; the repository also publishes a moving `nightly` tag. There is no `latest` tag.
-
-Pin an explicit release for repeatable deployments:
+OpenKOS publishes images through [GitHub Container Registry](https://github.com/senatroxx/openkos/pkgs/container/openkos). Use the `latest` tag for the standard deployment after the release workflow publishes it.
 
 ```bash
-OPENKOS_IMAGE=ghcr.io/senatroxx/openkos:0.1.0-alpha.5
+OPENKOS_IMAGE=ghcr.io/senatroxx/openkos:latest
 docker compose -f compose.production.yaml pull
 docker compose -f compose.production.yaml run --rm web php artisan migrate --force
 docker compose -f compose.production.yaml up -d
 ```
 
-Configure the production environment before starting the release image. See [Production deployment](/deployment) for PostgreSQL, proxy, TLS, queue, scheduler, and upload-volume requirements.
+For repeatable rollbacks, replace `latest` with an explicit release tag or image digest. See [Production deployment](/deployment) for PostgreSQL, proxy, TLS, queue, scheduler, and upload-volume requirements.
 
 <Warning>
-  Use the `nightly` image only for testing. It is a moving build, not a production release.
+  The `nightly` image is a moving build for testing only. Do not use it for production.
 </Warning>
