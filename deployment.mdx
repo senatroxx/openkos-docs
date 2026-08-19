@@ -43,12 +43,14 @@ docker compose -f compose.production.yaml up -d
 
 ## Choose an immutable image
 
+The current published release is `0.1.0-alpha.5`. Use an explicit release tag in production:
+
 ```bash
-OPENKOS_IMAGE=ghcr.io/senatroxx/openkos:1.2.3 \
+OPENKOS_IMAGE=ghcr.io/senatroxx/openkos:0.1.0-alpha.5 \
 docker compose -f compose.production.yaml up -d
 ```
 
-Stable tags include 1.2.3, 1.2, 1, and latest. Nightly builds use nightly and an immutable build tag containing the UTC date and commit SHA.
+The registry also publishes a moving `nightly` tag and immutable nightly tags. Use `nightly` only for testing; it is not a production release. The package does not currently publish a `latest` tag.
 
 ## Protect uploads
 
