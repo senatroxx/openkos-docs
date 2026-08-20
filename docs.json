@@ -7,7 +7,7 @@
     "light": "#3D89FF",
     "dark": "#1F67DA"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/logo/openkos-icon.svg",
   "navigation": {
     "pages": [
       "introduction",
@@ -43,8 +43,8 @@
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/openkos-light.png",
+    "dark": "/logo/openkos-dark.png"
   },
   "navbar": {
     "links": [
